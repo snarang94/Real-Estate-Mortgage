@@ -19,13 +19,13 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/homepage' },
-  'post /broker/create/application':'MortgageFormController.createApplication',
-  'post /broker/employee/login':'MortgageFormController.brokersideAuthenticate',
-  'post /broker/update/employee/:applicationNumber':'MortgageAdditionalController.updateApplication',
-  'get /broker/application/status/:applicationNumber':'MortgageAdditionalController.getStatus'
+  '/employerForm': { view: 'EmployerPortalForm' },
+  '/login': {view: 'employerPortalLoginView'},
+  '/logout': {view: 'logoutView'},
+
+
   /***************************************************************************
-  *                                                                            *
+  *                                                                          *
   * More custom routes here...                                               *
   * (See https://sailsjs.com/config/routes for examples.)                    *
   *                                                                          *

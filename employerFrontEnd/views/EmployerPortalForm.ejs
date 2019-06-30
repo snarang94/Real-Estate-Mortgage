@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SignUp Form</title>
+<style type="text/css">
+body {
+  background: #384047;
+  font-family: sans-serif;
+  font-size: 10px;
+}
+
+form {
+  background: #fff;
+  padding: 4em 4em 2em;
+  max-width: 400px;
+  margin: 126px auto;
+  box-shadow: 0 0 1em #222;
+  border-radius: 2px;
+}
+form h2 {
+  margin: 0 0 50px 0;
+  padding: 10px;
+  text-align: center;
+  font-size: 30px;
+  color: #666666;
+  border-bottom: solid 1px #e5e5e5;
+}
+form p {
+  margin: 0 0 3em 0;
+  position: relative;
+}
+form input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  margin: 0;
+}
+form input[type="text"],
+form input[type="password"] {
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  font-size: 1.6em;
+  padding: .8em .5em;
+  border-radius: 2px;
+}
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+  background: #fff;
+}
+form span {
+  display: block;
+  background: #F9A5A5;
+  padding: 2px 5px;
+  color: #666;
+}
+form input[type="submit"] {
+  background: rgba(148, 186, 101, 0.7);
+  box-shadow: 0 3px 0 0 rgba(123, 163, 73, 0.7);
+  border-radius: 2px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 2em;
+  line-height: 1.6em;
+  margin: 2em 0 0;
+  outline: none;
+  padding: .8em 0;
+  text-shadow: 0 1px #68B25B;
+}
+form input[type="submit"]:hover {
+  background: #94af65;
+  text-shadow: 0 1px 3px rgba(70, 93, 41, 0.7);
+}
+form label {
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  color: #999;
+  font-size: 16px;
+  display: inline-block;
+  padding: 4px 10px;
+  font-weight: 400;
+  background-color: rgba(255, 255, 255, 0);
+  -moz-transition: color 0.3s, top 0.3s, background-color 0.8s;
+  -o-transition: color 0.3s, top 0.3s, background-color 0.8s;
+  -webkit-transition: color 0.3s, top 0.3s, background-color 0.8s;
+  transition: color 0.3s, top 0.3s, background-color 0.8s;
+}
+form label.floatLabel {
+  top: -11px;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+}
+#header.header-scrolled {
+    background: #fff;
+    padding: 20px 0;
+    height: 40px;
+    transition: all 0.5s;
+}
+#header {
+    padding: 30px 0;
+    height: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    transition: all 0.5s;
+    z-index: 997;
+    background-color: #fff;
+    box-shadow: 5px 0px 15px #c3c3c3;
+}
+#header #logo h1 {
+    font-size: 34px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+#header #logo h1 a, #header #logo h1 a:hover {
+    color: #000;
+    padding-left: 10px;
+    border-left: 4px solid #18d26e;
+}
+#nav-menu-container {
+    float: right;
+    margin: 0;
+}
+.nav-menu > li {
+    margin-left: 10px;
+}
+.nav-menu > li {
+    float: left;
+}
+.nav-menu li {
+    position: relative;
+    white-space: nowrap;
+}
+.nav-menu, .nav-menu * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.header-scrolled .nav-menu li:hover > a, .header-scrolled .nav-menu > .menu-active > a {
+    color: #18d26e;
+}
+.header-scrolled .nav-menu a {
+    color: black;
+}
+.nav-menu li:hover > a, .nav-menu > .menu-active > a {
+    color: #18d26e;
+}
+.nav-menu a {
+    padding: 0 8px 10px 8px;
+    text-decoration: none;
+    display: inline-block;
+    color: #000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    outline: none;
+}
+#mobile-nav-toggle {
+    display: inline;
+}
+#mobile-nav-toggle {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    margin: 20px 20px 0 0;
+    border: 0;
+    background: none;
+    font-size: 24px;
+    display: none;
+    transition: all 0.4s;
+    outline: none;
+    cursor: pointer;
+}
+#mobile-body-overly {
+    width: 100%;
+    height: 100%;
+    z-index: 997;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+body.mobile-nav-active #mobile-nav {
+    left: 0;
+}
+#mobile-nav {
+    position: fixed;
+    top: 0;
+    padding-top: 18px;
+    bottom: 0;
+    z-index: 998;
+    background: rgba(0, 0, 0, 0.8);
+    left: -260px;
+    width: 260px;
+    overflow-y: auto;
+    transition: 0.4s;
+}
+#mobile-nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+#mobile-nav ul li {
+    position: relative;
+}
+#mobile-nav ul li a {
+    color: #fff;
+    font-size: 13px;
+    text-transform: uppercase;
+    overflow: hidden;
+    padding: 10px 22px 10px 15px;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+    display: block;
+    outline: none;
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+}
+#mobile-nav ul .menu-has-children i.fa-chevron-up {
+    color: #18d26e;
+}
+#mobile-nav ul .menu-has-children i {
+    position: absolute;
+    right: 0;
+    z-index: 99;
+    padding: 15px;
+    cursor: pointer;
+    color: #fff;
+}
+#mobile-nav ul .menu-item-active {
+    color: #18d26e;
+}
+#mobile-nav ul li li {
+    padding-left: 30px;
+}
+
+.menu-has-children ul
+{display: none;}
+
+
+@media (max-width: 768px){
+#nav-menu-container {
+    display: none;
+}
+
+#mobile-nav-toggle {
+    display: inline;
+}
+}
+</style>
+<script type="text/javascript">
+
+function submit_form()
+{
+	var username = document.getElementById("username");
+	var password = document.getElementById("password");
+  var consent_check = document.getElementById("consent_check");
+  if(consent_check.checked)
+  {
+
+  }
+  else
+  {
+    alert("Please indicate that you accept the Terms and Conditions");
+    form.terms.focus();
+    return false;
+  }
+	//call the web service here
+}
+function match_passwords() {
+        var password =document.getElementById('password').value;
+        var confirm_password =document.getElementById('confirm_password').value;
+        if ( password===confirm_password) {
+            document.getElementById('confirm_password').style.borderColor  = 'green';
+            document.getElementById('submit').disabled = false;
+            document.getElementById('password_message').style.display = "none";
+        }
+        else{
+            document.getElementById('confirm_password').style.borderColor  = 'red';
+            document.getElementById('submit').disabled = true;
+            document.getElementById('password_message').style.display = "block";
+        }
+    }
+</script>
+</head>
+<header id="header">
+    <div class="container">
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li><a href="">Account</a></li>
+          <li><a href="">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<body>
+<form action="#" method="post">
+  <h2>Request Information</h2>
+		<p>
+			<label for="mortgageNumber" class="floatLabel">Mortgage Number</label>
+			<input id="mortgageNumber" name="mortgageNumber" type="text" required>
+		</p>
+		<p>
+			<label for="web_service_address" class="floatLabel">Web service address</label>
+			<input id="web_service_address" onkeyup="match_passwords()" name="web_service_address" type="text" required>
+		</p>
+		<p>
+			<div style="display: inline-flex;">
+        <input style="width: auto;" id="consent_check" type="checkbox" name="terms"> I accept the Terms and Conditions</input>
+      </div>
+		</p>
+		<p>
+			<input type="submit" value="Request" id="submit" onclick="submit_form()">
+		</p>
+	</form>
+</body>
+</html>

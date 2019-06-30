@@ -13,9 +13,9 @@ module.exports = {
    var phone=req.body.phone;
    var email=req.body.email
    var password=(Math.random()*1e12).toString(36);
-   //sails.log(password);
-  // sails.log(address);
-  // sails.log('sasas');
+   sails.log(password);
+   sails.log(address);
+   sails.log('sasas');
    var options = {
        name: name,
        address: address,
