@@ -296,15 +296,14 @@ form label.floatLabel {
                     alert("Unknown Error Occured. Please try again later.");
                 }
             };
-            xhttp.open("GET", "http://localhost:1337/broker/application/status/2");
+            xhttp.open("GET", "https://backend-mortgage.herokuapp.com/broker/application/status/2");
             xhttp.send();
   }
 
   function formSubmit(formElement){
     var xhttp = new XMLHttpRequest();
-    var params = 'name='+document.getElementById("firstName").value+'&address='+document.getElementById("address").value+'&phone'+document.getElementById("phone").value+'&email='+document.getElementById("email").value;
+    var params = 'name='+document.getElementById("name").value+'&address='+document.getElementById("address").value+'&phone'+document.getElementById("phone").value+'&email='+document.getElementById("email").value;
 
-    alert(params);
             xhttp.onreadystatechange = function() 
             {
                 if (this.readyState == 4 && this.status == 200) {
@@ -313,8 +312,6 @@ form label.floatLabel {
 
                   var companyResult = jQuery.parseJSON(this.responseText);
                   document.getElementById("accountStatus").innerHTML = "Your application is submitted. Check account for Application Status";
-
-                    //window.location.href = "http://localhost:1338/account"
                 }
                 //https://stackoverflow.com/questions/28556398/how-to-catch-neterr-connection-refused stackoverflow
                 if (xhttp.readyState == 4 && xhttp.status == 0) 
@@ -322,16 +319,17 @@ form label.floatLabel {
                     alert("Unknown Error Occured. Please try again later.");
                 }
             };
-            xhttp.open("POST", "http://localhost:1337/broker/create/application",true);
+            xhttp.open("POST", "https://backend-mortgage.herokuapp.com/broker/create/application",true);
             xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhttp.send(params);
+             return false;
 
   }
 </script>
 
 </head>
 <body>
-	<header id="header">
+  <header id="header">
     <div class="container">
       <nav id="nav-menu-container">
         <ul class="nav-menu">
@@ -341,33 +339,32 @@ form label.floatLabel {
       </nav>
     </div>
   </header>
-  <form id="formId" method="post" action="http://localhost:1337/broker/create/application" onsubmit="return formSubmit(this);"style="margin-top: 7%;">
-  	<h2>Mortgage Form</h2>
-		<p>
-			<label for="name" class="floatLabel">First Name: </label>
-			<input id="name" name="name" type="text" required>
-		</p>
-		<p>
-			<label for="lastName" class="floatLabel">Last Name: </label>
-			<input id="lastName" name="lastName" type="text" >
-		</p>
-		<p>
-			<label for="address" class="floatLabel">Address: </label>
-			<input id="address" name="address" type="text" required>
-		</p>
-		<p>
-			<label for="phone" class="floatLabel">Phone: </label>
-			<input id="phone" name="phone" placeholder="000-000-0000" type="tel" >
+  <form id="formId" method="post" onsubmit="return formSubmit(this);" style="margin-top: 7%;">
+    <h2>Mortgage Form</h2>
+    <p>
+      <label for="name" class="floatLabel">First Name: </label>
+      <input id="name" name="name" type="text" required>
+    </p>
+    <p>
+      <label for="lastName" class="floatLabel">Last Name: </label>
+      <input id="lastName" name="lastName" type="text" >
+    </p>
+    <p>
+      <label for="address" class="floatLabel">Address: </label>
+      <input id="address" name="address" type="text" required>
+    </p>
+    <p>
+      <label for="phone" class="floatLabel">Phone: </label>
+      <input id="phone" name="phone" placeholder="000-000-0000" type="tel" >
     </p>
     <p>
         <label for="email" class="floatLabel">Email: </label>
         <input id="email" name="email" type="text" required>
       </p>
-		<p>
-			<input type="submit" value="Submit" id="submit">
-		</p>
+    <p>
+      <input type="submit" value="Submit" id="submit">
+    </p>
   </form>
-  
   <div id="accountStatus" style="display:none">
     
   </div>

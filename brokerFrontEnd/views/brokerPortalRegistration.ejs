@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <style type="text/css">
 body {
   background: #384047;
@@ -90,46 +97,47 @@ form label.floatLabel {
   font-size: 14px;
 }
 </style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-function submit_form()
+function formSubmit()
 {
-	var username = document.getElementById("username");
+	var email = document.getElementById("email");
 	var password = document.getElementById("password");
-	//call the web service here
+
+  var params = 'email='+email.value+'&password='+password.value;
+	var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() 
+            {
+                if (this.readyState == 4 && this.status == 200) {
+                  window.location.href="http://localhost:1337/"
+                }
+                //https://stackoverflow.com/questions/28556398/how-to-catch-neterr-connection-refused stackoverflow
+                if (xhttp.readyState == 4 && xhttp.status == 0) 
+                {
+                    alert("Unknown Error Occured. Please try again later.");
+                }
+            };
+            xhttp.open("POST", "https://backend-mortgage.herokuapp.com/broker/employee/login");
+            xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhttp.send(params);
+            return false;
 }
-function match_passwords() {
-        var password =document.getElementById('password').value;
-        var confirm_password =document.getElementById('confirm_password').value;
-        if ( password===confirm_password) {
-            document.getElementById('confirm_password').style.borderColor  = 'green';
-            document.getElementById('submit').disabled = false;
-            document.getElementById('password_message').style.display = "none";
-        }
-        else{
-            document.getElementById('confirm_password').style.borderColor  = 'red';
-            document.getElementById('submit').disabled = true;
-            document.getElementById('password_message').style.display = "block";
-        }
-    }
 </script>
+</head>
 <body>
-<form action="#" method="post">
-  <h2>Sign Up</h2>
+<form id="formID" action="http://localhost:1337/" method="post" onsubmit="return formSubmit();">
+  <h2>Login Up</h2>
 		<p>
-			<label for="username" class="floatLabel">Username</label>
-			<input id="username" name="Username" type="text" required>
+			<label for="email" class="floatLabel">Email</label>
+			<input id="email" name="email" type="text" required>
 		</p>
 		<p>
 			<label for="password" class="floatLabel">Password</label>
-			<input id="password" onkeyup="match_passwords()" name="password" type="password" required>
+			<input id="password" name="password" type="password" required>
 		</p>
 		<p>
-			<label for="confirm_password" class="floatLabel">Confirm Password</label>
-			<input id="confirm_password" onkeyup="match_passwords()" name="confirm_password" type="password" required>
-		</p>
-		<p>
-			<input type="submit" value="Create Account" id="submit" onclick="submit_form()">
+			<input type="submit" value="Submit" id="submit" >
 		</p>
 	</form>
 </body>
