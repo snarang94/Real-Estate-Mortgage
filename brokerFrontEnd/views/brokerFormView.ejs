@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SignUp Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<style type="text/css">
+#header.header-scrolled {
+    background: #fff;
+    padding: 20px 0;
+    height: 40px;
+    transition: all 0.5s;
+}
+#header {
+    padding: 30px 0;
+    height: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    transition: all 0.5s;
+    z-index: 997;
+    background-color: #fff;
+    box-shadow: 5px 0px 15px #c3c3c3;
+}
+#header #logo h1 {
+    font-size: 34px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+#header #logo h1 a, #header #logo h1 a:hover {
+    color: #000;
+    padding-left: 10px;
+    border-left: 4px solid #18d26e;
+}
+#nav-menu-container {
+    float: right;
+    margin: 0;
+}
+.nav-menu > li {
+    margin-left: 10px;
+}
+.nav-menu > li {
+    float: left;
+}
+.nav-menu li {
+    position: relative;
+    white-space: nowrap;
+}
+.nav-menu, .nav-menu * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.header-scrolled .nav-menu li:hover > a, .header-scrolled .nav-menu > .menu-active > a {
+    color: #18d26e;
+}
+.header-scrolled .nav-menu a {
+    color: black;
+}
+.nav-menu li:hover > a, .nav-menu > .menu-active > a {
+    color: #18d26e;
+}
+.nav-menu a {
+    padding: 0 8px 10px 8px;
+    text-decoration: none;
+    display: inline-block;
+    color: #000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    outline: none;
+}
+#mobile-nav-toggle {
+    display: inline;
+}
+#mobile-nav-toggle {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    margin: 20px 20px 0 0;
+    border: 0;
+    background: none;
+    font-size: 24px;
+    display: none;
+    transition: all 0.4s;
+    outline: none;
+    cursor: pointer;
+}
+#mobile-body-overly {
+    width: 100%;
+    height: 100%;
+    z-index: 997;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+body.mobile-nav-active #mobile-nav {
+    left: 0;
+}
+#mobile-nav {
+    position: fixed;
+    top: 0;
+    padding-top: 18px;
+    bottom: 0;
+    z-index: 998;
+    background: rgba(0, 0, 0, 0.8);
+    left: -260px;
+    width: 260px;
+    overflow-y: auto;
+    transition: 0.4s;
+}
+#mobile-nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+#mobile-nav ul li {
+    position: relative;
+}
+#mobile-nav ul li a {
+    color: #fff;
+    font-size: 13px;
+    text-transform: uppercase;
+    overflow: hidden;
+    padding: 10px 22px 10px 15px;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+    display: block;
+    outline: none;
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+}
+#mobile-nav ul .menu-has-children i.fa-chevron-up {
+    color: #18d26e;
+}
+#mobile-nav ul .menu-has-children i {
+    position: absolute;
+    right: 0;
+    z-index: 99;
+    padding: 15px;
+    cursor: pointer;
+    color: #fff;
+}
+#mobile-nav ul .menu-item-active {
+    color: #18d26e;
+}
+#mobile-nav ul li li {
+    padding-left: 30px;
+}
+
+.menu-has-children ul
+{display: none;}
+
+
+@media (max-width: 768px){
+#nav-menu-container {
+    display: none;
+}
+
+#mobile-nav-toggle {
+    display: inline;
+}
+}
+body {
+  background: #384047;
+  font-family: sans-serif;
+  font-size: 10px;
+}
+
+form {
+  background: #fff;
+  padding: 4em 4em 2em;
+  max-width: 400px;
+  margin: 50px auto 0;
+  box-shadow: 0 0 1em #222;
+  border-radius: 2px;
+}
+form h2 {
+  margin: 0 0 50px 0;
+  padding: 10px;
+  text-align: center;
+  font-size: 30px;
+  color: #666666;
+  border-bottom: solid 1px #e5e5e5;
+}
+form p {
+  margin: 0 0 3em 0;
+  position: relative;
+}
+form input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  margin: 0;
+}
+form input[type="text"],
+form input[type="password"],
+form input[type="tel"] {
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  font-size: 1.6em;
+  padding: .8em .5em;
+  border-radius: 2px;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form input[type="tel"]:focus {
+  background: #fff;
+}
+form span {
+  display: block;
+  background: #F9A5A5;
+  padding: 2px 5px;
+  color: #666;
+}
+form input[type="submit"] {
+  background: rgba(148, 186, 101, 0.7);
+  box-shadow: 0 3px 0 0 rgba(123, 163, 73, 0.7);
+  border-radius: 2px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 2em;
+  line-height: 1.6em;
+  margin: 2em 0 0;
+  outline: none;
+  padding: .8em 0;
+  text-shadow: 0 1px #68B25B;
+}
+form input[type="submit"]:hover {
+  background: #94af65;
+  text-shadow: 0 1px 3px rgba(70, 93, 41, 0.7);
+}
+form label {
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  color: #999;
+  font-size: 16px;
+  display: inline-block;
+  padding: 4px 10px;
+  font-weight: 400;
+  background-color: rgba(255, 255, 255, 0);
+  -moz-transition: color 0.3s, top 0.3s, background-color 0.8s;
+  -o-transition: color 0.3s, top 0.3s, background-color 0.8s;
+  -webkit-transition: color 0.3s, top 0.3s, background-color 0.8s;
+  transition: color 0.3s, top 0.3s, background-color 0.8s;
+}
+form label.floatLabel {
+  top: -11px;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+}
+
+#accountStatus {
+  display: none;
+  margin-top: 20%;
+  color: white;
+  text-align: center;
+  font-size: 26px;
+  }
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+</head>
+<body>
+	<header id="header">
+    <div class="container">
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+
+          <li></li>
+          <li><a href="/">Check Application Status</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <form id="formId" method="post" onsubmit="return formSubmit();" style="margin-top: 7%;">
+  	<h2>Mortgage Form</h2>
+		<p>
+			<label for="name" class="floatLabel">Name: </label>
+			<input id="name" name="name" type="text" required>
+		</p>
+		<p>
+			<label for="address" class="floatLabel">Address: </label>
+			<input id="address" name="address" type="text" required>
+		</p>
+		<p>
+			<label for="phone" class="floatLabel">Phone: </label>
+			<input id="phone" name="phone" placeholder="000-000-0000" type="tel" >
+    </p>
+    <p>
+        <label for="email" class="floatLabel">Email: </label>
+        <input id="email" name="email" type="text" required>
+      </p>
+		<p>
+			<input type="submit" value="Submit" id="submit">
+		</p>
+  </form>
+
+
+
+  </div>
+
+
+
+  <script>
+
+  function formSubmit()
+  {
+
+     var xhttp = new XMLHttpRequest();
+     const params = {
+        name : document.getElementById("name").value,
+        address : document.getElementById("address").value,
+        phone : document.getElementById("phone").value,
+        email : document.getElementById("email").value
+      };
+
+      var param_string = JSON.stringify(params);
+    //  console.log(param_string);
+      xhttp.onreadystatechange = function()
+        {
+          if (this.readyState == 4 && this.status == 200) {
+           //console.log(xhttp.response);
+           var res1=JSON.parse(xhttp.responseText);
+           console.log(res1);
+           localStorage.setItem("appNumber",res1.applicationID);
+           localStorage.setItem("appemail",res1.email);
+           localStorage.setItem("apppassword",res1.password);
+          // console.log(localStorage.getItem("appNumber"));
+          //console.log(localStorage.getItem("appemail"));
+          //console.log(localStorage.getItem("apppassword"));
+           window.location.href = "/confirmation"
+          }
+                //https://stackoverflow.com/questions/28556398/how-to-catch-neterr-connection-refused stackoverflow
+          if (xhttp.readyState == 4 && xhttp.status == 0)
+              {
+                alert("Unknown Error Occured. Please try again later.");
+              }
+          };
+
+              xhttp.open("POST", "https://mbrwebservice.azurewebsites.net/broker/create/application",true);
+              xhttp.setRequestHeader('Content-type', 'application/json');
+              xhttp.send(param_string);
+
+    return false;
+  }
+
+
+  </script>
+
+
+
+
+
+</body>
+</html>

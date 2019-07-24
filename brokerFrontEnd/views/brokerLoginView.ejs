@@ -1,0 +1,181 @@
+<style type="text/css">
+body {
+  background: #384047;
+  font-family: sans-serif;
+  font-size: 10px;
+}
+
+form {
+  background: #fff;
+  padding: 4em 4em 2em;
+  max-width: 400px;
+  margin: 50px auto 0;
+  box-shadow: 0 0 1em #222;
+  border-radius: 2px;
+}
+form h2 {
+  margin: 0 0 50px 0;
+  padding: 10px;
+  text-align: center;
+  font-size: 30px;
+  color: #666666;
+  border-bottom: solid 1px #e5e5e5;
+}
+form p {
+  margin: 0 0 3em 0;
+  position: relative;
+}
+form input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  margin: 0;
+}
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  font-size: 1.6em;
+  padding: .8em .5em;
+  border-radius: 2px;
+}
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+  background: #fff;
+}
+form span {
+  display: block;
+  background: #F9A5A5;
+  padding: 2px 5px;
+  color: #666;
+}
+form input[type="submit"] {
+  background: rgba(148, 186, 101, 0.7);
+  box-shadow: 0 3px 0 0 rgba(123, 163, 73, 0.7);
+  border-radius: 2px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 2em;
+  line-height: 1.6em;
+  margin: 2em 0 0;
+  outline: none;
+  padding: .8em 0;
+  text-shadow: 0 1px #68B25B;
+}
+form input[type="submit"]:hover {
+  background: #94af65;
+  text-shadow: 0 1px 3px rgba(70, 93, 41, 0.7);
+}
+form label {
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  color: #999;
+  font-size: 16px;
+  display: inline-block;
+  padding: 4px 10px;
+  font-weight: 400;
+  background-color: rgba(255, 255, 255, 0);
+  -moz-transition: color 0.3s, top 0.3s, background-color 0.8s;
+  -o-transition: color 0.3s, top 0.3s, background-color 0.8s;
+  -webkit-transition: color 0.3s, top 0.3s, background-color 0.8s;
+  transition: color 0.3s, top 0.3s, background-color 0.8s;
+}
+form label.floatLabel {
+  top: -11px;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+}
+</style>
+<script type="text/javascript">
+
+function submit_form()
+{
+	//call the web service here
+
+  var xhttp = new XMLHttpRequest();
+  const params = {
+     email : document.getElementById("username").value,
+     password : document.getElementById("password").value
+   };
+
+   var param_string = JSON.stringify(params);
+ //  console.log(param_string);
+   xhttp.onreadystatechange = function()
+     {
+       if (this.readyState == 4 && this.status == 200) {
+        //console.log(xhttp.response);
+        var res1=JSON.parse(xhttp.responseText);
+        console.log(res1);
+        localStorage.setItem("statusNum",res1.applicationNumber);
+      //  localStorage.setItem("appemail",res1.email);
+       // console.log(localStorage.getItem("appNumber"));
+       //console.log(localStorage.getItem("appemail"));
+       //console.log(localStorage.getItem("apppassword"));
+        window.location.href = "/status"
+       }
+
+       if (this.readyState == 4 && this.status == 401) {
+        alert("Incorrect Username or Password");
+       }
+
+       //https://stackoverflow.com/questions/28556398/how-to-catch-neterr-connection-refused stackoverflow
+       if (xhttp.readyState == 4 && xhttp.status == 0)
+           {
+             alert("Unknown Error Occured. Please try again later.");
+           }
+       };
+
+           xhttp.open("POST", "https://mbrwebservice.azurewebsites.net/broker/employee/login",true);
+           xhttp.setRequestHeader('Content-type', 'application/json');
+           xhttp.send(param_string);
+
+ return false;
+
+
+}
+function match_passwords() {
+        var password =document.getElementById('password').value;
+        var confirm_password =document.getElementById('confirm_password').value;
+        if ( password===confirm_password) {
+            document.getElementById('confirm_password').style.borderColor  = 'green';
+            document.getElementById('submit').disabled = false;
+            document.getElementById('password_message').style.display = "none";
+        }
+        else{
+            document.getElementById('confirm_password').style.borderColor  = 'red';
+            document.getElementById('submit').disabled = true;
+            document.getElementById('password_message').style.display = "block";
+        }
+    }
+</script>
+<body>
+
+<form  method="post" onsubmit="return submit_form();">
+  <h2>Check Application Status</h2>
+		<p>
+			<label for="username" class="floatLabel">Email ID</label>
+			<input type='email' id="username" name="Username" required>
+		</p>
+		<p>
+			<label for="password" class="floatLabel">Password</label>
+			<input id="password" onkeyup="match_passwords()" name="password" type="password" required>
+		</p>
+		<p>
+			<label for="confirm_password" class="floatLabel">Confirm Password</label>
+			<input id="confirm_password" onkeyup="match_passwords()" name="confirm_password" type="password" required>
+		</p>
+		<p>
+			<input type="submit" value="Check Status" id="submit" >
+
+      <hr>
+      <br>
+      <a href="/form" style= "color:red; font-size: 12px">Fill New Application </a>
+		</p>
+	</form>
+</body>
